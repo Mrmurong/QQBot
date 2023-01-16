@@ -17,7 +17,7 @@ func main() {
 		postType := gjson.Get(string(rawData), "post_type").String()
 		if postType == "message" {
 			message := gjson.Get(string(rawData), "message").String()
-			if message == "小爱" {
+			if message == "小爱同学" {
 				context.JSON(http.StatusOK, gin.H{
 					"reply": "我在呢,主人",
 				})
@@ -96,6 +96,11 @@ func main() {
 			if string([]rune(message)[0:3]) == "日常 " {
 				context.JSON(http.StatusOK, gin.H{
 					"reply": GetFetureRiChang(string([]rune(message)[3:])),
+				})
+			}
+			if message == "使用说明"{
+				context.JSON(http.StatusOK,gin.H{
+					"reply":"小爱的使用说明地址在这呢！https://github.com/Mrmurong/-/wiki/%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E",
 				})
 			}
 
